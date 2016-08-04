@@ -64,7 +64,7 @@ class SiteController extends Controller
     }
 
     /**
-     * Login action.
+     * login action.
      *
      * @return string
      */
