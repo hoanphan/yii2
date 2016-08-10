@@ -4,10 +4,10 @@ use yii\helpers\Html;
 use yii\grid\GridView;
 
 /* @var $this yii\web\View */
-/* @var $searchModel app\modules\admin\UserSeach */
+/* @var $searchModel app\modules\admin\modelSeach\UserSeach */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Users';
+$this->title = Yii::t('app', 'Users');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="user-index">
@@ -16,7 +16,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('Create User', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a(Yii::t('app', 'Create User'), ['create'], ['class' => 'btn btn-success']) ?>
     </p>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
@@ -26,11 +26,14 @@ $this->params['breadcrumbs'][] = $this->title;
 
             'user_id',
             'username',
-            'password',
             'email:email',
             'fullname',
-            // 'phone',
-            // 'status',
+             'phone',
+            [
+                'attribute'=>'status',
+                'value'=>function($data){return $data->getStatusText($data->status);},
+                'filter'=>[0=>'Inactive',1=>'Active']
+            ],
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

@@ -7,10 +7,11 @@ $config = [
     'id' => 'basic',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
+    'language'=>'vn',
     'components' => [
         'request' => [
             'enableCookieValidation' => true,
-            'cookieValidationKey' => 'your-validation-key',
+            'cookieValidationKey' => '43refdfgf',
         ],
         'cache' => [
             'class' => 'yii\caching\FileCache',
@@ -40,13 +41,13 @@ $config = [
         ],
         'db' => require(__DIR__ . '/db.php'),
 
-      /*'urlManager' => [
+        'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
 
             'rules' => [
             ],
-        ],*/
+        ],
 
     ],
     'modules' => [

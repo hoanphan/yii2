@@ -43,13 +43,26 @@ class User extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'user_id' => 'User ID',
-            'username' => 'Username',
-            'password' => 'Password',
-            'email' => 'Email',
-            'fullname' => 'Fullname',
-            'phone' => 'Phone',
-            'status' => 'Status',
+            'user_id' => Yii::t('app','User ID'),
+            'username' => Yii::t('app', 'Username'),
+            'password' =>  Yii::t('app','Password'),
+            'email' =>  Yii::t('app','Email'),
+            'fullname' =>  Yii::t('app','Fullname'),
+            'phone' =>  Yii::t('app','Phone'),
+            'status' =>  Yii::t('app','Status'),
         ];
+    }
+    public function getStatusText($status)
+    {
+        if($status==0)
+        {
+            return "Inactive";
+        }
+        elseif ($status==1)
+        {
+            return "Active";
+        }
+        else
+            return"Unknown";
     }
 }

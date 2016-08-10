@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "ac90ca790fa159f6255f54703256d111",
-    "content-hash": "9a4f332a497490df6dba39d084a8f20f",
+    "hash": "a1718dcccb83c2e754308332432d53da",
+    "content-hash": "a18d20217c89f0a3eff231fd2bdcde83",
     "packages": [
         {
             "name": "bower-asset/bootstrap",
@@ -298,6 +298,94 @@
                 "html"
             ],
             "time": "2016-07-16 12:58:58"
+        },
+        {
+            "name": "navatech/yii2-navatech-base",
+            "version": "1.0.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/navatech/yii2-navatech-base.git",
+                "reference": "e97122c56826ff4e15636c7ec647b275538cbfbf"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/navatech/yii2-navatech-base/zipball/e97122c56826ff4e15636c7ec647b275538cbfbf",
+                "reference": "e97122c56826ff4e15636c7ec647b275538cbfbf",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.6",
+                "yiisoft/yii2": "*",
+                "yiisoft/yii2-bootstrap": "*",
+                "yiisoft/yii2-swiftmailer": "*"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "navatech\\base\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Le Phuong",
+                    "email": "phuong17889@gmail.com"
+                }
+            ],
+            "description": "Yii2 Base for navatech application",
+            "homepage": "https://navatech.vn",
+            "keywords": [
+                "base",
+                "extension",
+                "navatech",
+                "yii2"
+            ],
+            "time": "2016-05-07 17:29:43"
+        },
+        {
+            "name": "navatech/yii2-simplehtmldom",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/navatech/yii2-simplehtmldom.git",
+                "reference": "0a7e3caf30c4886774015956d9dfbc02093e901d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/navatech/yii2-simplehtmldom/zipball/0a7e3caf30c4886774015956d9dfbc02093e901d",
+                "reference": "0a7e3caf30c4886774015956d9dfbc02093e901d",
+                "shasum": ""
+            },
+            "require": {
+                "navatech/yii2-navatech-base": "@dev"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "navatech\\simplehtmldom\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Le Phuong",
+                    "email": "phuong17889@gmail.com"
+                }
+            ],
+            "description": "Simple HTML Dom",
+            "homepage": "https://navatech.vn",
+            "keywords": [
+                "extension",
+                "simplehtmldom",
+                "yii2"
+            ],
+            "time": "2016-05-08 10:55:57"
         },
         {
             "name": "swiftmailer/swiftmailer",
@@ -903,7 +991,9 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "navatech/yii2-simplehtmldom": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {

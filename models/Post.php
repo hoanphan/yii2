@@ -2,7 +2,11 @@
 
 namespace app\models;
 
+use app\modules\admin\models\User;
 use Yii;
+use yii\debug\components\search\matchers\Base;
+use yii\helpers\BaseUrl;
+use yii\helpers\Url;
 
 /**
  * This is the model class for table "post".
@@ -36,7 +40,7 @@ class Post extends \yii\db\ActiveRecord
             [['category_id', 'user_id', 'title', 'desc', 'content', 'picture'], 'required'],
             [['category_id', 'user_id', 'status'], 'integer'],
             [['content'], 'string'],
-            [['create_date'], 'safe'],
+            /*[['create_date'], 'safe'],*/
             [['title', 'desc', 'picture'], 'string', 'max' => 255],
         ];
     }
@@ -47,15 +51,29 @@ class Post extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'post_id' => 'Post ID',
-            'category_id' => 'Category ID',
-            'user_id' => 'User ID',
-            'title' => 'Title',
-            'desc' => 'Desc',
-            'content' => 'Content',
-            'picture' => 'Picture',
-            'status' => 'Status',
-            'create_date' => 'Create Date',
+            'post_id' => Yii::t('app','Post ID'),
+            'category_id' => Yii::t('app','Category ID'),
+            'user_id' => Yii::t('app','User ID'),
+            'title' => Yii::t('app','Title'),
+            'desc' => Yii::t('app','Desc'),
+            'content' => Yii::t('app','Content'),
+            'picture' => Yii::t('app','Picture'),
+            'status' => Yii::t('app','Status'),
+            'create_date' => Yii::t('app','Create Date')
         ];
+    }
+    public function getNameCategory($id)
+    {
+        $category= Category::findOne(['category_id'=>$id]);
+        return $category["name"] ;
+    }
+    public function getUser($id)
+    {
+        $user=User::findOne($id);
+        return $user["fullname"];
+    }
+    public function getUrlPicture($path)
+    {
+      return   BaseUrl::home().Yii::$app->params['uploadPath'].$path;
     }
 }

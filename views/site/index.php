@@ -1,53 +1,38 @@
-<?php
+<div id="hpage_cats">
+    <?php $i = 0;
+    while ($i < count($posts) - 1){
+    ?>
+    <?php if ($i % 2 == 0) {
+    ?>
+    <div class="fl_left">
 
-/* @var $this yii\web\View */
+        <h2><a href="#"><?= \app\models\Category::findOne($posts[$i]['category_id'])->name; ?>»</a></h2>
+        <?php
 
-$this->title = 'My Yii Application';
-?>
-<div class="site-index">
 
-    <div class="jumbotron">
-        <h1>Congratulations!</h1>
+        if (isset($posts[$i]))
+            echo '<img src="' . $posts[$i]['picture'] . '" alt="" style="height: 100px; width: 100px">
+            <p><strong><a href="' . \yii\helpers\Url::to(['site/about', 'id' =>  $posts[$i]['post_id']]) . '">' . $posts[$i]['title'] . '</a></strong></p>
+            ' .  $posts[$i]['desc'] . '
+        </div>'; ?>
+        <?php
+        }
+        else{
+        ?>
+        <div class="fl_right">
+            <h2><a href="#"><?= \app\models\Category::findOne($posts[$i+1]['category_id'])->name ?> »</a></h2>
+            <?php
+            if (isset($posts[$i+1]))
+                echo '<img src="' . $posts[$i+1]['picture'] . '" alt="" style="height: 100px; width: 100px">
+            <p><strong><a href="">' . $posts[$i+1]['title'] . '</a></strong></p>' . $posts[$i+1]['desc'] . '
+        </div>'; ?>
+            <br class="clear">
+            <?php
+            }
+            ?>
 
-        <p class="lead">You have successfully created your Yii-powered application.</p>
-
-        <p><a class="btn btn-lg btn-success" href="http://www.yiiframework.com">Get started with Yii</a></p>
-    </div>
-
-    <div class="body-content">
-
-        <div class="row">
-            <div class="col-lg-4">
-                <h2>Heading</h2>
-
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
-
-                <p><a class="btn btn-default" href="http://www.yiiframework.com/doc/">Yii Documentation &raquo;</a></p>
-            </div>
-            <div class="col-lg-4">
-                <h2>Heading</h2>
-
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
-
-                <p><a class="btn btn-default" href="http://www.yiiframework.com/forum/">Yii Forum &raquo;</a></p>
-            </div>
-            <div class="col-lg-4">
-                <h2>Heading</h2>
-
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
-
-                <p><a class="btn btn-default" href="http://www.yiiframework.com/extensions/">Yii Extensions &raquo;</a></p>
-            </div>
+            <?php $i++;
+            } ?>
         </div>
-
     </div>
 </div>

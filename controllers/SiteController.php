@@ -2,6 +2,10 @@
 
 namespace app\controllers;
 
+use app\models\Category;
+use app\models\Coment;
+use app\models\Post;
+use app\models\Simplehtmldom;
 use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
@@ -32,6 +36,7 @@ class SiteController extends Controller
                 'class' => VerbFilter::className(),
                 'actions' => [
                     'logout' => ['post'],
+                    'comment' => ['post'],
                 ],
             ],
         ];
@@ -60,7 +65,8 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        return $this->render('index');
+        $post=Post::find()->all();
+        return $this->render('index',array('posts'=>$post));
     }
 
     /**
@@ -102,15 +108,15 @@ class SiteController extends Controller
      */
     public function actionContact()
     {
-        $model = new ContactForm();
-        if ($model->load(Yii::$app->request->post()) && $model->contact(Yii::$app->params['adminEmail'])) {
-            Yii::$app->session->setFlash('contactFormSubmitted');
-
-            return $this->refresh();
-        }
+        $model = Simplehtmldom::find()->limit(4)->all();
+        $files= Simplehtmldom::find()->all();
         return $this->render('contact', [
-            'model' => $model,
+            'models' => $model,'files'=>$files
         ]);
+    }
+    public function actionView($id)
+    {
+        return $this->render('view',['id'=>$id]);
     }
 
     /**
@@ -118,8 +124,44 @@ class SiteController extends Controller
      *
      * @return string
      */
-    public function actionAbout()
+    public function actionAbout($id)
     {
-        return $this->render('about');
+        $model=new Coment();
+        $post=Post::findOne(['post_id'=>$id]);
+        $comment=Coment::find()->where(['post_id'=>$id])->all();
+
+        return $this->render('about',array('post'=>$post,'id'=>$id,'model'=>$model,'comments'=>$comment));
+    }
+
+    /**
+     *
+     */
+    public function actionComment()
+    {
+        if (isset($_POST['Coment'])) {
+            $comment = new Coment();
+            $comment->post_id = 5;
+            $comment->coment=$_POST['Coment']['coment'];
+            $comment->name_user=$_POST['Coment']['name_user'];
+            $comment->email_user=$_POST['Coment']['email_user'];
+            if($comment->save())
+            {
+                $message= '
+                    <strong style="padding: 10px; color: #0b62a4"> ' . $comment->name_user . '</strong>
+                    <div style="padding: 15px">
+                        ' . $comment->coment . '
+                    </div>
+                 ';
+                echo $message;
+            } else {
+                echo "error";
+            }
+
+        }
+        else
+        {
+            echo 'Loi';
+        }
+        die;
     }
 }

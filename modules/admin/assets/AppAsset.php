@@ -6,13 +6,13 @@ use yii\web\AssetBundle;
 
 class AppAsset extends AssetBundle
 {
-    public $sourcePath = '@app/modules/admin/web/assets';
-    public $basePath = '@webroot/modules/admin/web';
-    public $baseUrl = '@web/admin/web/';
+
+   /* public $basePath = '@app/modules/admin/web';
+    public $baseUrl = '@app/admin/web/';*/
     public function init()
     {
         parent::init();
-        $this->basePath = '@webroot/modules/admin/web';
+        $this->sourcePath = "@app/modules/admin/web";
         $this->css = [
             'css/ace.min.css',
             'css/bootstrap.min.css',
@@ -23,8 +23,8 @@ class AppAsset extends AssetBundle
             'js/jquery.min.js'
         ];
         $this->depends = [
-            'yii\web\YiiAsset',
-            'yii\bootstrap\BootstrapAsset',
+           /* 'yii\web\YiiAsset',
+            'yii\bootstrap\BootstrapAsset',*/
         ];
         $this->jsOptions = [
             'position' => View::EVENT_BEGIN_PAGE

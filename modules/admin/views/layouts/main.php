@@ -26,7 +26,7 @@ AppAsset::register($this);
 <div class="wrap">
     <?php
     NavBar::begin([
-        'brandLabel' => 'My Company',
+        'brandLabel' => 'My Magazine',
         'brandUrl' => Yii::$app->homeUrl,
         'options' => [
             'class' => 'navbar-inverse navbar-fixed-top',
@@ -35,9 +35,9 @@ AppAsset::register($this);
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => [
-            ['label' => 'Home', 'url' => ['/site/index']],
-            ['label' => 'About', 'url' => ['/site/about']],
-            ['label' => 'Contact', 'url' => ['/site/contact']],
+            ['label' => 'User', 'url' => ['/admin/user/index']],
+            ['label' => 'Category', 'url' => ['/admin/category/index']],
+            ['label' => 'Post', 'url' => ['/admin/post/index']],
             Yii::$app->user->isGuest ? (
             ['label' => 'login', 'url' => ['/site/login']]
             ) : (

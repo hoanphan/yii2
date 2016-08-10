@@ -41,10 +41,30 @@ class Category extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'category_id' => 'Category ID',
-            'name' => 'Name',
-            'create_date' => 'Create Date',
-            'status' => 'Status',
+            'category_id' => Yii::t('app','Category ID'),
+            'name' =>  Yii::t('app','Name'),
+            'create_date' =>  Yii::t('app','Create Date'),
+            'status' =>  Yii::t('app','Status'),
         ];
+    }
+    public function getListCategory()
+    {
+       $ar= array();
+        $ar[0]="Inactive";
+        $ar[1]="Active";
+        return $ar;
+    }
+    public function getStatusText($status)
+    {
+        if($status==0)
+        {
+            return "Inactive";
+        }
+        elseif ($status==1)
+        {
+            return "Active";
+        }
+        else
+            return"Unknown";
     }
 }
