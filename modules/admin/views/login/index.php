@@ -33,8 +33,10 @@ $form = ActiveForm::begin([
 
         <div class="clearfix">
             <label class="inline">
-                <input class="ace" type="checkbox">
-                <span class="lbl"> Remember Me</span>
+                <?= $form->field($model,'rememberMe')->checkbox([
+                ])->label(false);
+                ?>
+
             </label>
 
             <button type="submit" class="width-35 pull-right btn btn-sm btn-primary">

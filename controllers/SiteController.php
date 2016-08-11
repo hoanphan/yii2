@@ -6,6 +6,7 @@ use app\models\Category;
 use app\models\Coment;
 use app\models\Post;
 use app\models\Simplehtmldom;
+use app\models\User;
 use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
@@ -65,8 +66,9 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        $post=Post::find()->all();
-        return $this->render('index',array('posts'=>$post));
+        $post_hots=Simplehtmldom::find()->orderBy(['id'=>'SORT_DESC'])->limit(3)->all();
+
+        return $this->render('index',array('hots'=>$post_hots));
     }
 
     /**
@@ -76,6 +78,7 @@ class SiteController extends Controller
      */
     public function actionLogin()
     {
+
         if (!Yii::$app->user->isGuest) {
             return $this->goHome();
         }

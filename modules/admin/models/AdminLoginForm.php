@@ -46,10 +46,12 @@ class AdminLoginForm extends Model
     public function validatePassword($attribute, $params)
     {
         if (!$this->hasErrors()) {
-            $user = $this->getUser();
+            $user = User::findByUsername($this->username);
 
-            if (!$user || !$user->validatePassword($this->password)) {
-                $this->addError($attribute, 'Incorrect username or password.');
+
+
+            if (!$user || !$user->validatePassword($this->password,['password', 'validatePassword'])) {
+                $this->addError($attribute, 'Incorrect username or password.'.$this->password);
             }
         }
     }
@@ -60,11 +62,9 @@ class AdminLoginForm extends Model
      */
     public function login()
     {
-        if (isset($this)) {
-           if($this->getUser()->password==$this->password)
-               return true;
-            else
-                return false;
+
+        if ($this->validate()) {
+            return Yii::$app->user->login($this->getUser(), $this->rememberMe ? 3600*24*30 : 0);
         }
         return false;
     }

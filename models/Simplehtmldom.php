@@ -3,6 +3,7 @@
 namespace app\models;
 
 use Yii;
+use yii\helpers\Html;
 
 /**
  * This is the model class for table "simplehtmldom".
@@ -55,5 +56,19 @@ class Simplehtmldom extends \yii\db\ActiveRecord
     {
         $i=strpos($str,'<img');
         return substr($str,0,$i);
+    }
+
+    /**
+     * @return string
+     */
+    public static function getContentLastPostForIdCategory($id_category)
+    {
+        $posts=Simplehtmldom::find()->orderBy(['id'=>'SORT_DESC'])  ->all();
+        if(isset($posts))
+        {
+            return $posts[0];
+        }
+        else
+            return null;
     }
 }

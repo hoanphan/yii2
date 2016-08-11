@@ -67,8 +67,12 @@ class PostController extends Controller
     {
         Yii::$app->params['uploadPath'] = Yii::$app->basePath . '/uploads/';
         $model = new Post();
+
         if($model->load(Yii::$app->request->post())){
-        $image = UploadedFile::getInstance($model, 'picture');
+
+            $imager = UploadedFile::getInstances($model, 'picture');
+            var_dump($model);
+            die();
         $ext=end(explode(".",$image->name));
         // generate a unique file name
         $model->picture = Yii::$app->security->generateRandomString().".{$ext}";

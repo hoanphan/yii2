@@ -14,21 +14,35 @@ class AppAsset extends AssetBundle
         parent::init();
         $this->sourcePath = "@app/modules/admin/web";
         $this->css = [
-            'css/ace.min.css',
+
             'css/bootstrap.min.css',
-            'font-awesome/4.2.0/css/font-awesome.min.css'
+            'font-awesome/4.2.0/css/font-awesome.min.css',
+            'fonts/fonts.googleapis.com.css',
+            'css/ace.min.css',
+
         ];
         $this->js = [
+            'js/ace-extra.min.js',
+           /* 'js/jquery.2.1.1.min.js',*/
+            'js/bootstrap.min.js',
+             'js/jquery-ui.custom.min.js',
+            'js/jquery.ui.touch-punch.min.js',
+            'js/jquery.easypiechart.min.js',
+            'js/jquery.sparkline.min.js',
+            'js/jquery.flot.min.js',
+            'js/jquery.flot.pie.min.js',
+            'js/jquery.flot.resize.min.js',
+
+
+            'js/ace-elements.min.js',
             'js/ace.min.js',
-            'js/jquery.min.js'
+
         ];
         $this->depends = [
-           /* 'yii\web\YiiAsset',
-            'yii\bootstrap\BootstrapAsset',*/
+            'yii\web\YiiAsset',
+            'yii\bootstrap\BootstrapAsset',
         ];
-        $this->jsOptions = [
-            'position' => View::EVENT_BEGIN_PAGE
-        ];
+
     }
 
 }

@@ -76,4 +76,17 @@ class Post extends \yii\db\ActiveRecord
     {
       return   BaseUrl::home().Yii::$app->params['uploadPath'].$path;
     }
+    public static function getPostForCategory($id)
+    {
+        return Post::find(['category_id'=>$id])->orderBy(['post_id'=>'SORT_DESC'])->limit(1)->all();
+    }
+    public static function getUrlToPicture($url)
+    {
+
+        if(strpos($url,'http')>0)
+            return $url;
+        else
+            return BaseUrl::home().Yii::$app->params['uploadPath'].$url;
+    }
+
 }

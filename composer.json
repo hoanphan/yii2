@@ -18,7 +18,12 @@
         "yiisoft/yii2": ">=2.0.5",
         "yiisoft/yii2-bootstrap": "*",
         "yiisoft/yii2-swiftmailer": "*",
-        "navatech/yii2-simplehtmldom": "dev-master"
+        "navatech/yii2-simplehtmldom": "dev-master",
+        "kartik-v/yii2-grid": "@dev",
+        "navatech/yii2-migration-generator": "*",
+        "navatech/yii2-roxymce": "@dev",
+        "kartik-v/yii2-widget-fileinput": "@dev",
+        "navatech/yii2-multi-language": "@dev"
     },
     "require-dev": {
         "yiisoft/yii2-codeception": "*",

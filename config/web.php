@@ -7,9 +7,10 @@ $config = [
     'id' => 'basic',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
-    'language'=>'vn',
+    'language'   => 'en',
     'components' => [
         'request' => [
+
             'enableCookieValidation' => true,
             'cookieValidationKey' => '43refdfgf',
         ],
@@ -42,8 +43,9 @@ $config = [
         'db' => require(__DIR__ . '/db.php'),
 
         'urlManager' => [
-            'enablePrettyUrl' => true,
-            'showScriptName' => false,
+            'enablePrettyUrl'     => true,
+            'showScriptName'      => false,
+            'enableStrictParsing' => false,
 
             'rules' => [
             ],
@@ -52,6 +54,15 @@ $config = [
     ],
     'modules' => [
         'admin' => ['class'=>'app\modules\admin\Admin'],
+        'gridview' =>  [
+            'class' => '\kartik\grid\Module'
+        ],
+        'roxymce'  => [
+            'class' => '\navatech\roxymce\Module',
+
+        ],
+        'language' => [
+            'class'    => '\navatech\language\Module',]
     ],
     'params' => $params,
 ];
