@@ -37,7 +37,7 @@ class Post extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['category_id', 'user_id', 'title', 'desc', 'content', 'picture'], 'required'],
+            [['category_id', 'user_id', 'title', 'desc', 'content'], 'required'],
             [['category_id', 'user_id', 'status'], 'integer'],
             [['content'], 'string'],
             /*[['create_date'], 'safe'],*/
@@ -87,6 +87,11 @@ class Post extends \yii\db\ActiveRecord
             return $url;
         else
             return BaseUrl::home().Yii::$app->params['uploadPath'].$url;
+    }
+    public static function getListStatus()
+    {
+        $arr=array(0=>'Inactive',1=>'Active');
+        return $arr;
     }
 
 }

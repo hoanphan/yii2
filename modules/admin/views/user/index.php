@@ -1,6 +1,7 @@
 <?php
 
 use yii\helpers\Html;
+
 use kartik\grid\GridView;
 
 /* @var $this yii\web\View */
@@ -9,7 +10,10 @@ use kartik\grid\GridView;
 
 $this->title = Yii::t('app', 'Users');
 $this->params['breadcrumbs'][] = $this->title;
+$title='export';
+
 ?>
+
 <div class="user-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
@@ -18,25 +22,49 @@ $this->params['breadcrumbs'][] = $this->title;
     <p>
         <?= Html::a(Yii::t('app', 'Create User'), ['create'], ['class' => 'btn btn-success']) ?>
     </p>
-    <?= GridView::widget([
-        'export'=>false,
+   <?= GridView::widget([
+
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
-        'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
+       'export'=>[
+            'hmtl'
+       ],
+       'toolbar'=> [
+           '{export}',
+           '{toggleData}',
+       ],
+    // set export properties
+        'export'=>[
+           'fontAwesome'=>true
+       ],
+       'columns' => [
+           ['class'=>'kartik\grid\SerialColumn'],
 
-            'user_id',
-            'username',
-            'email:email',
-            'fullname',
-             'phone',
-            [
-                'attribute'=>'status',
-                'value'=>function($data){return $data->getStatusText($data->status);},
-                'filter'=>[0=>'Inactive',1=>'Active']
-            ],
+           'user_id',
+           'username',
+           'email:email',
+           'fullname',
+           'phone',
+           [
+               'attribute'=>'status',
 
-            ['class' => 'yii\grid\ActionColumn'],
-        ],
+               'filter'=>[0=>'Inactive',1=>'Active'],
+               'class' => '\kartik\grid\BooleanColumn',
+               'trueLabel' => 1,
+               'falseLabel' => 0
+           ],
+
+       ]
+        , 'pjax'=>true,
+
+       'panel'=>[
+           'type'=>GridView::TYPE_PRIMARY,
+           'heading'=>'user',
+       ],
+        'exportConfig' => [
+       GridView::CSV => ['label' => 'Save as CSV'],
+       GridView::HTML => ['label' => 'Save as HTML'],
+           GridView::PDF => ['label' => 'Save as PDF'],
+           ],
     ]); ?>
 </div>

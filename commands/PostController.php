@@ -124,9 +124,14 @@ class PostController extends Controller
         }
         echo "ok";
     }
-    public function actionDelete()
+    public function actionDeleteAllRssReader()
     {
         $files=\app\models\Simplehtmldom::deleteAll();
+        echo "ok";
+    }
+    public function actionDelete()
+    {
+        $deleteAllPost=Post::deleteAll();
         echo "ok";
     }
 }

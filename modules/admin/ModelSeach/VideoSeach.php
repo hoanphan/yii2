@@ -5,12 +5,12 @@ namespace app\modules\admin\modelSeach;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\Post;
+use app\models\Video;
 
 /**
- * PostSeach represents the model behind the search form about `app\models\Post`.
+ * VideoSeach represents the model behind the search form about `app\models\Video`.
  */
-class PostSeach extends Post
+class VideoSeach extends Video
 {
     /**
      * @inheritdoc
@@ -18,8 +18,8 @@ class PostSeach extends Post
     public function rules()
     {
         return [
-            [['post_id', 'category_id', 'user_id', 'status'], 'integer'],
-            [['title', 'desc', 'content', 'picture', 'create_date'], 'safe'],
+            [['video_id', 'user_id', 'status'], 'integer'],
+            [['video_title', 'url_video', 'create_date', 'imager_last'], 'safe'],
         ];
     }
 
@@ -41,8 +41,8 @@ class PostSeach extends Post
      */
     public function search($params)
     {
+        $query = Video::find();
 
-        $query = Post::find()->orderBy(['post_id'=>SORT_DESC]);
         // add conditions that should always apply here
 
         $dataProvider = new ActiveDataProvider([
@@ -59,17 +59,15 @@ class PostSeach extends Post
 
         // grid filtering conditions
         $query->andFilterWhere([
-            'post_id' => $this->post_id,
-            'category_id' => $this->category_id,
+            'video_id' => $this->video_id,
             'user_id' => $this->user_id,
-            'status' => $this->status,
             'create_date' => $this->create_date,
+            'status' => $this->status,
         ]);
 
-        $query->andFilterWhere(['like', 'title', $this->title])
-            ->andFilterWhere(['like', 'desc', $this->desc])
-            ->andFilterWhere(['like', 'content', $this->content])
-            ->andFilterWhere(['like', 'picture', $this->picture]);
+        $query->andFilterWhere(['like', 'video_title', $this->video_title])
+            ->andFilterWhere(['like', 'url_video', $this->url_video])
+            ->andFilterWhere(['like', 'imager_last', $this->imager_last]);
 
         return $dataProvider;
     }

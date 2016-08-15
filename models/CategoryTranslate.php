@@ -11,13 +11,12 @@ use Yii;
 /**
  * This is the model class for table "category".
  *
- * @property integer $category_id
- * @property string $name
- * @property string $create_date
- * @property  string $language
- * @property integer $status
+ * @property integer $category_idCategoryTranslate
+ * @property string $nameCategoryTranslate
+ * @property string $create_dateCategoryTranslate
+ * @property integer $statusCategoryTranslate
  */
-class Category extends \yii\db\ActiveRecord
+class CategoryTranslate extends \yii\db\ActiveRecord
 {
     /**
      * @inheritdoc
@@ -35,8 +34,8 @@ class Category extends \yii\db\ActiveRecord
             'ml' => [
                 'class'      => MultiLanguageBehavior::className(),
                 'attributes' => [
-                    'name',
-                    'create_date'
+                    'nameCategoryTranslate',
+                    'create_dateCategoryTranslate'
                     ]
             ],
         ];
@@ -57,10 +56,10 @@ class Category extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name'], 'required'],
-            [['create_date'], 'safe'],
-            [['status'], 'integer'],
-            [['name','language'], 'string', 'max' => 255],
+            [['nameCategoryTranslate'], 'required'],
+            [['create_dateCategoryTranslate'], 'safe'],
+            [['statusCategoryTranslate'], 'integer'],
+            [['nameCategoryTranslate'], 'string', 'max' => 255],
         ];
     }
 
@@ -70,10 +69,10 @@ class Category extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         $attribute=[
-            'category_id' =>'ID',
-            'name' =>  Translate::name(),
-            'create_date' => Translate::create_date(),
-            'status'=>'Status'
+            'category_idCategoryTranslate' =>'ID',
+            'nameCategoryTranslate' =>  Translate::name(),
+            'create_dateCategoryTranslate' => Translate::create_date(),
+            'statusCategoryTranslate'=>'Status'
 
         ];
         foreach(MultiLanguageHelper::attributeNames($this) as $mlAttribute){

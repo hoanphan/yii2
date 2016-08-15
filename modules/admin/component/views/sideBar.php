@@ -101,7 +101,7 @@ $bundle=AppAsset::register($this)
             </li>
 
             <li class="<?=WidgetBase::isActive('category','create')?>">
-                <a href="jqgrid.html">
+                <a href="<?=Url::toRoute(['category/create'])?>">
                     <i class="menu-icon fa fa-caret-right"></i>
                   Create category
                 </a>
@@ -131,7 +131,7 @@ $bundle=AppAsset::register($this)
                 <b class="arrow"></b>
             </li>
 
-            <li class="<?=WidgetBase::isActive('category','create')?>">
+            <li class="<?=WidgetBase::isActive('post','create')?>">
                 <a href="<?=Url::toRoute(['post/create'])?>">
                     <i class="menu-icon fa fa-caret-right"></i>
                   create Post
@@ -155,7 +155,7 @@ $bundle=AppAsset::register($this)
 
         <ul class="submenu">
             <li class="<?=WidgetBase::isActive('video','index')?>">
-                <a href="form-elements.html">
+                <a href="<?=Url::toRoute(['video/index'])?>">
                     <i class="menu-icon fa fa-caret-right"></i>
                     List video
                 </a>
@@ -164,7 +164,7 @@ $bundle=AppAsset::register($this)
             </li>
 
             <li class="<?=WidgetBase::isActive('video','create')?>">
-                <a href="form-elements-2.html">
+                <a href="<?=Url::toRoute(['video/create'])?>">
                     <i class="menu-icon fa fa-caret-right"></i>
                     Create video
                 </a>

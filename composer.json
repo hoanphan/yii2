@@ -23,7 +23,9 @@
         "navatech/yii2-migration-generator": "*",
         "navatech/yii2-roxymce": "@dev",
         "kartik-v/yii2-widget-fileinput": "@dev",
-        "navatech/yii2-multi-language": "@dev"
+        "navatech/yii2-multi-language": "@dev",
+        "kartik-v/yii2-mpdf": "dev-master",
+        "navatech/yii2-setting": "@dev"
     },
     "require-dev": {
         "yiisoft/yii2-codeception": "*",

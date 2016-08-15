@@ -50,12 +50,19 @@ $config = [
             'rules' => [
             ],
         ],
-
+        /*'setting' => [
+            'class' => 'navatech\setting\Setting',
+        ],*/
     ],
     'modules' => [
         'admin' => ['class'=>'app\modules\admin\Admin'],
+        'setting'  => [
+            'class'               => 'navatech\setting\Module',
+            'controllerNamespace' => 'navatech\setting\controllers',
+        ],
         'gridview' =>  [
-            'class' => '\kartik\grid\Module'
+            'class' => '\kartik\grid\Module',
+
         ],
         'roxymce'  => [
             'class' => '\navatech\roxymce\Module',

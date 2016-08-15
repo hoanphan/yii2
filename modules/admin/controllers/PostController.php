@@ -9,6 +9,7 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\web\UploadedFile;
+use yii\helpers\BaseUrl;
 
 /**
  * PostController implements the CRUD actions for Post model.
@@ -67,29 +68,38 @@ class PostController extends Controller
     {
         Yii::$app->params['uploadPath'] = Yii::$app->basePath . '/uploads/';
         $model = new Post();
-
         if($model->load(Yii::$app->request->post())){
+            $image=UploadedFile::getInstanceByName('Post[picture]');
+            /*$image = UploadedFile::getInstance($model, 'picture');*/
 
-            $imager = UploadedFile::getInstances($model, 'picture');
-            var_dump($model);
-            die();
-        $ext=end(explode(".",$image->name));
-        // generate a unique file name
-        $model->picture = Yii::$app->security->generateRandomString().".{$ext}";
+            $model->user_id=Yii::$app->user->id;
+            $ext=end(explode(".",$model->picture));
+            // generate a unique file name
+            $model->picture = Yii::$app->security->generateRandomString().".".$image->extension;
 
-        // the path to save file, you can set an uploadPath
-        // in Yii::$app->params (as used in example below)
-        $path = Yii::$app->params['uploadPath'] . $model->picture;;
-        if ( $model->save()) {
+            // the path to save file, you can set an uploadPath
+            // in Yii::$app->params (as used in example below)
+            $path = Yii::$app->params['uploadPath'] . $model->picture;
 
-            $image->saveAs($path);
-            return $this->redirect(['view', 'id' => $model->post_id]);
-        }
-        else {
-            return $this->render('create', [
-                'model' => $model,
-            ]);
-        }
+            if ( $model->save()) {
+                if($image->saveAs($path))
+                {
+
+                    return $this->redirect(['index', 'id' => $model->post_id]);
+                }
+                else
+                {
+
+                    return $this->render('create', [
+                        'model' => $model,
+                    ]);
+                }
+            }
+            else {
+                return $this->render('create', [
+                    'model' => $model,
+                ]);
+            }
         } else {
             return $this->render('create', [
                 'model' => $model,
@@ -106,9 +116,9 @@ class PostController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
-
+        $model->picture=BaseUrl::home().Yii::$app->params['uploadPath'].$model->picture;
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->post_id]);
+            return $this->redirect(['index', 'id' => $model->post_id]);
         } else {
             return $this->render('update', [
                 'model' => $model,

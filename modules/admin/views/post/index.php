@@ -36,7 +36,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
                 'attribute'=>'user_id',
                 'value' => function($data){
-                    return $data->getUser($data->category_id);
+                    return $data->getUser($data->user_id);
                 },
                 'filter'=>ArrayHelper::map(\app\modules\admin\models\User::find()->asArray()->all(), 'user_id', 'fullname')
             ],

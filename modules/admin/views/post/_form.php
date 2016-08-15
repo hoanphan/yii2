@@ -18,12 +18,11 @@ use kartik\file\FileInput;
 
     <?= $form->field($model, 'category_id')->dropDownList(ArrayHelper::map(\app\models\Category::find()->asArray()->all(),'category_id','name')) ?>
 
-    <?= $form->field($model, 'user_id')->dropDownList(ArrayHelper::map(User::find()->asArray()->all(), 'user_id', 'fullname')) ?>
 
     <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'desc')->textInput(['maxlength' => true]) ?>
-    <?= RoxyMceWidget::widget([
+    <?= $form->field($model, 'content')->textarea(['rows' => 6])->widget(RoxyMceWidget::className(),[
         'name'        => 'content', //default name of textarea which will be auto generated, REQUIRED if not using 'model' section
         'value'       => isset($_POST['content']) ? $_POST['content'] : '', //default value of current textarea, NOT REQUIRED
         'action'      => Url::to(['/roxymce/default']), //default roxymce action route, NOT REQUIRED
@@ -31,10 +30,9 @@ use kartik\file\FileInput;
             'title' => 'RoxyMCE',//title of roxymce dialog, NOT REQUIRED
         ],
         'htmlOptions' => [],//html options of this widget, NOT REQUIRED
-    ]);
-    ?>
+    ]) ?>
 
-    <?= $form->field($model, 'picture')->textInput()->widget(FileInput::className(),[
+    <?= $form->field($model, 'picture')->fileInput()->widget(FileInput::className(),[
         'pluginOptions' => [
             'showCaption' => false,
             'showRemove' => false,
@@ -45,8 +43,7 @@ use kartik\file\FileInput;
         ],
         'options' => ['accept' => 'image/*']
     ]) ?>
-
-    <?= $form->field($model, 'status')->textInput() ?>
+    <?= $form->field($model, 'status')->dropDownList(\app\models\Post::getListStatus()) ?>
 
 
     <div class="form-group">
