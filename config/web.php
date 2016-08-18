@@ -9,6 +9,7 @@ $config = [
     'bootstrap' => ['log'],
     'language'   => 'en',
     'components' => [
+
         'request' => [
 
             'enableCookieValidation' => true,
@@ -50,6 +51,13 @@ $config = [
             'rules' => [
             ],
         ],
+        'jwplayer' => [
+            'class' => 'wadeshuler\jwplayer\JWConfig',
+            'key' => '',  // <-- Your Key Here!!
+            /*'playerOptions' => [
+                'autostart' => false,
+            ],*/
+        ]
         /*'setting' => [
             'class' => 'navatech\setting\Setting',
         ],*/

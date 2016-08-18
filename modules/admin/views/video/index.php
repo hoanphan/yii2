@@ -1,8 +1,9 @@
 <?php
 
 use yii\helpers\Html;
-use yii\grid\GridView;
-
+use kartik\grid\GridView;
+use  yii\helpers\ArrayHelper;
+use app\models\User;
 /* @var $this yii\web\View */
 /* @var $searchModel app\modules\admin\modelSeach\VideoSeach */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -24,18 +25,42 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'video_id',
-            'user_id',
+            [
+                'attribute'=>'user_id',
+                'filterType'=>GridView::FILTER_SELECT2,
+                'filterWidgetOptions'=>[
+                    'pluginOptions'=>['allowClear'=>true],
+                ],
+                'filterInputOptions'=>['placeholder'=>'Chose Name'],
+                'filter'=>ArrayHelper::map(User::find()->asArray()->all(), 'user_id', 'fullname'),
+                'value'=>function($data)
+                {
+                    return $data->getTextUser($data->user_id);
+                }
+            ],
             'video_title',
-            'create_date',
+            [
+                'width'=>'20%',
+                'attribute'=>'create_date',
+                'format'=>['date','php:d-m-y'],
+                'filterType'=>GridView::FILTER_DATE
+            ],
              [
+                 'filter'=>false,
                  'attribute'=>'imager_last',
                  'format'=>'html',
                  'value'=>function($data){
-                    return '<img src="https://tpc.googlesyndication.com/simgad/11769754993861333737" border="0" width="728" alt="" class="img_ad" onload="">';
+                    return '<img style="width: 100px;height: 100px" src="'.$data->getUrlVideo($data->imager_last).'"  alt="" class="img_ad" onload="">';
                  }
              ],
-             'status',
+             [
+                 'attribute'=>'status',
+                 'filter'=>[0=>'Inactive',1=>'Active'],
+                 'value'=>function($data)
+                 {
+                     return $data->getTextStatus($data->status);
+                 }
+             ],
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

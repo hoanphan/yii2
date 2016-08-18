@@ -3,6 +3,8 @@
 namespace app\models;
 
 use Yii;
+use yii\helpers\Url;
+use yii\helpers\BaseUrl;
 
 /**
  * This is the model class for table "video".
@@ -45,7 +47,6 @@ class Video extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'video_id' => 'Video ID',
             'user_id' => 'User ID',
             'video_title' => 'Video Title',
             'url_video' => 'Url Video',
@@ -53,5 +54,31 @@ class Video extends \yii\db\ActiveRecord
             'status' => 'Status',
             'imager_last' => 'Imager Last',
         ];
+    }
+    public function getUrlVideo($url)
+    {
+        return BaseUrl::home().Yii::$app->params['uploadImageVideo'].$url;
+    }
+    public function getTextStatus($data)
+    {
+        $arr=array(0=>'Inactive',1=>'Active');
+        if(isset($arr[$data]))
+        {
+            return $arr[$data];
+        }
+        else
+            return 'Unknown';
+    }
+    public function getTextUser($user_id)
+    {
+        $user=User::findOne($user_id);
+        if(isset($user))
+        {
+            return $user->fullname;
+        }
+        else
+        {
+            return 'Unknown';
+        }
     }
 }

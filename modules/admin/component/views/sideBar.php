@@ -174,7 +174,21 @@ $bundle=AppAsset::register($this)
 
         </ul>
     </li>
+    <li class="<?=WidgetBase::isActive('calendar')?>">
+        <a href="<?=Url::toRoute(['calendar/index'])?>">
+            <i class="menu-icon fa fa-calendar"></i>
 
+            <span class="menu-text">
+								Calendar
+
+								<span class="badge badge-transparent tooltip-error" title="" data-original-title="2 Important Events">
+									<i class="ace-icon fa fa-exclamation-triangle red bigger-130"></i>
+								</span>
+							</span>
+        </a>
+
+        <b class="arrow"></b>
+    </li>
 
 </ul>
 <div class="sidebar-toggle sidebar-collapse" id="sidebar-collapse">

@@ -26,9 +26,7 @@ $title='export';
 
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
-       'export'=>[
-            'hmtl'
-       ],
+
        'toolbar'=> [
            '{export}',
            '{toggleData}',
@@ -40,7 +38,14 @@ $title='export';
        'columns' => [
            ['class'=>'kartik\grid\SerialColumn'],
 
-           'user_id',
+           [
+               'attribute'=>'user_id',
+                'format'=>'html',
+                'value'=>function($data)
+                {
+                      return '<button>aaaa</button>';
+                }
+           ],
            'username',
            'email:email',
            'fullname',

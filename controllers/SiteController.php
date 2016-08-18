@@ -3,6 +3,7 @@
 namespace app\controllers;
 
 use app\models\Category;
+use app\models\CategoryTranslate;
 use app\models\Coment;
 use app\models\Post;
 use app\models\Simplehtmldom;
@@ -130,12 +131,15 @@ class SiteController extends Controller
     public function actionAbout($id)
     {
         $model=new Coment();
-        $post=Post::findOne(['post_id'=>$id]);
+        $post=CategoryTranslate::findOne(['post_id'=>$id]);
         $comment=Coment::find()->where(['post_id'=>$id])->all();
 
         return $this->render('about',array('post'=>$post,'id'=>$id,'model'=>$model,'comments'=>$comment));
     }
-
+    public function actionVideo()
+    {
+        return $this->render('video');
+    }
     /**
      *
      */

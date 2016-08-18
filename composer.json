@@ -25,7 +25,8 @@
         "kartik-v/yii2-widget-fileinput": "@dev",
         "navatech/yii2-multi-language": "@dev",
         "kartik-v/yii2-mpdf": "dev-master",
-        "navatech/yii2-setting": "@dev"
+        "navatech/yii2-setting": "@dev",
+        "cics/yii2-video-embed-widget": "dev-master"
     },
     "require-dev": {
         "yiisoft/yii2-codeception": "*",

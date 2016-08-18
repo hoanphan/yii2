@@ -92,7 +92,7 @@ $i=0;
             <h2><a href="#"><?= $categories[$i]->name?> »</a></h2>
 
             <?php
-                $post=Post::getPostForCategory($categories[$i]->category_id);
+                $post=Post::getPostForCategory($categories[$i]->id);
             if($post!=null):?>
              <!--   <img src="<?/*=$post->image */?> " style="height: 100px;width: 100px" alt="">-->
                 <p><strong><a href="#">Indonectetus facilis leo.</a></strong></p>

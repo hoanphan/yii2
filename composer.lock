@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "5627e43cc5ba71b980bfd91cabd697dd",
-    "content-hash": "e1ff677e6af0e667f82385875cf75230",
+    "hash": "292a9559e47496521414016ac612ff28",
+    "content-hash": "9c4b68bb57021f6e6d0eb7ecef1a5f40",
     "packages": [
         {
             "name": "bower-asset/awesome-bootstrap-checkbox",
@@ -2645,6 +2645,48 @@
                 "mailer"
             ],
             "time": "2016-07-08 11:51:25"
+        },
+        {
+            "name": "wadeshuler/yii2-jwplayer",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/WadeShuler/yii2-jwplayer.git",
+                "reference": "39884ceb58e660f23f72fe828d3e3732bc0bfc6f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/WadeShuler/yii2-jwplayer/zipball/39884ceb58e660f23f72fe828d3e3732bc0bfc6f",
+                "reference": "39884ceb58e660f23f72fe828d3e3732bc0bfc6f",
+                "shasum": ""
+            },
+            "require": {
+                "yiisoft/yii2": "*"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "wadeshuler\\jwplayer\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Wade Shuler"
+                }
+            ],
+            "description": "JWPlayer extension widget for the Yii2 Framework",
+            "keywords": [
+                "Longtail Video",
+                "extension",
+                "jwplayer",
+                "widget",
+                "yii2"
+            ],
+            "time": "2016-07-26 15:24:58"
         },
         {
             "name": "yiisoft/yii2",

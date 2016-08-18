@@ -28,7 +28,7 @@ class AppAsset extends AssetBundle
            /* 'js/jquery.2.1.1.min.js',*/
 //            'js/bootstrap.min.js',
 //             'js/jquery-ui.custom.min.js',
-            'js/jquery.ui.touch-punch.min.js',
+
             'js/jquery.easypiechart.min.js',
             'js/jquery.sparkline.min.js',
             'js/jquery.flot.min.js',
@@ -45,7 +45,12 @@ class AppAsset extends AssetBundle
             'yii\bootstrap\BootstrapAsset',
             'yii\bootstrap\BootstrapPluginAsset'
         ];
-
+        $this->jsOptions['position']=\yii\web\View::POS_HEAD;
     }
+
+    /**
+     * @param array $jsOptions
+     */
+
 
 }

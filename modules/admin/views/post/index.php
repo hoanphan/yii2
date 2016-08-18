@@ -35,9 +35,10 @@ $this->params['breadcrumbs'][] = $this->title;
             [
 
                 'attribute'=>'user_id',
-                'value' => function($data){
-                    return $data->getUser($data->user_id);
+                'value' => function($model){
+                    return Html::textInput('', $model->user_id);
                 },
+                'format' => 'raw',
                 'filter'=>ArrayHelper::map(\app\modules\admin\models\User::find()->asArray()->all(), 'user_id', 'fullname')
             ],
 

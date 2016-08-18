@@ -64,7 +64,7 @@ class Post extends \yii\db\ActiveRecord
     }
     public function getNameCategory($id)
     {
-        $category= Category::findOne(['category_id'=>$id]);
+        $category= Category::findOne(['id'=>$id]);
         return $category["name"] ;
     }
     public function getUser($id)

@@ -2,19 +2,17 @@
 
 namespace app\models;
 
-use navatech\language\components\MultiLanguageBehavior;
-use navatech\language\components\MultiLanguageQuery;
-use navatech\language\helpers\MultiLanguageHelper;
-use navatech\language\Translate;
 use Yii;
 
 /**
- * This is the model class for table "category".
+ * This is the model class for table "category_translate".
  *
- * @property integer $category_idCategoryTranslate
- * @property string $nameCategoryTranslate
- * @property string $create_dateCategoryTranslate
- * @property integer $statusCategoryTranslate
+ * @property integer $id
+ * @property integer $category_id
+ * @property string $language
+ * @property string $name
+ *
+ * @property Category $category
  */
 class CategoryTranslate extends \yii\db\ActiveRecord
 {
@@ -23,43 +21,19 @@ class CategoryTranslate extends \yii\db\ActiveRecord
      */
     public static function tableName()
     {
-        return 'category';
+        return 'category_translate';
     }
 
     /**
      * @inheritdoc
      */
-    public function behaviors() {
-        return [
-            'ml' => [
-                'class'      => MultiLanguageBehavior::className(),
-                'attributes' => [
-                    'nameCategoryTranslate',
-                    'create_dateCategoryTranslate'
-                    ]
-            ],
-        ];
-    }
-
-    /**
-     * @return MultiLanguageQuery
-     */
-    public static function find() {
-        return new MultiLanguageQuery(get_called_class());
-    }
-    public static function findOneTranslated($condition) {
-        return is_array($condition) ? self::find()->where($condition)->translate()->one() : self::find()->where(['id' => $condition])->translate()->one();
-    }
-
-
-
     public function rules()
     {
         return [
-            [['nameCategoryTranslate'], 'required'],
-            [['create_dateCategoryTranslate'], 'safe'],
-            [['statusCategoryTranslate'], 'integer'],
-            [['nameCategoryTranslate'], 'string', 'max' => 255],
+            [['category_id', 'language', 'name'], 'required'],
+            [['category_id'], 'integer'],
+            [['language', 'name'], 'string', 'max' => 255],
+            [['category_id'], 'exist', 'skipOnError' => true, 'targetClass' => Category::className(), 'targetAttribute' => ['category_id' => 'id']],
         ];
     }
 
@@ -68,36 +42,19 @@ class CategoryTranslate extends \yii\db\ActiveRecord
      */
     public function attributeLabels()
     {
-        $attribute=[
-            'category_idCategoryTranslate' =>'ID',
-            'nameCategoryTranslate' =>  Translate::name(),
-            'create_dateCategoryTranslate' => Translate::create_date(),
-            'statusCategoryTranslate'=>'Status'
-
+        return [
+            'id' => 'ID',
+            'category_id' => 'Category ID',
+            'language' => 'Language',
+            'name' => 'Name',
         ];
-        foreach(MultiLanguageHelper::attributeNames($this) as $mlAttribute){
-            $attributeLabels[$mlAttribute] = Translate::$mlAttribute();
-        }
-        return $attributeLabels;
     }
-    public function getListCategory()
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getCategory()
     {
-       $ar= array();
-        $ar[0]="Inactive";
-        $ar[1]="Active";
-        return $ar;
-    }
-    public function getStatusText($status)
-    {
-        if($status==0)
-        {
-            return "Inactive";
-        }
-        elseif ($status==1)
-        {
-            return "Active";
-        }
-        else
-            return"Unknown";
+        return $this->hasOne(Category::className(), ['id' => 'category_id']);
     }
 }
